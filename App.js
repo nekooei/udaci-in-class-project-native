@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet,  View } from 'react-native';
-import AddEntry from "./components/addEntry";
+import AddEntry from "./components/AddEntry";
 
 export default class App extends React.Component {
   render() {
