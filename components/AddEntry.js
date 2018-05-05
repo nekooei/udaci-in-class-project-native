@@ -1,9 +1,18 @@
 import React, {Component} from 'react'
-import {Text, View} from 'react-native'
-import {getMetricMetaInfo} from '../utils/helpers'
+import {Text, View, TouchableOpacity} from 'react-native'
+import {getMetricMetaInfo, timeToString} from '../utils/helpers'
 import UdaciSlider from './UdacitSlider'
 import UdaciStepper from './UdaciStepper'
 import DateHelper from "./DateHelper";
+
+function SubmitBtn({ onPress }) {
+	return(
+		<TouchableOpacity
+			onPress={onPress}>
+			<Text>Submit</Text>
+		</TouchableOpacity>
+	)
+}
 
 
 
@@ -28,6 +37,27 @@ export default class AddEntry extends Component {
 				[metric]: count > max ? max : count
 			}
 		})
+	}
+
+	submit = () => {
+		const key = timeToString()
+		const entry = this.state
+
+		// update redux
+
+		this.setState({
+			bike: 0,
+			run: 0,
+			swim: 0,
+			sleep: 0,
+			eat: 0
+		})
+
+		// add to db
+
+		// navigate to home
+
+		// reset notification
 	}
 
 	decrement = (metric) => {
@@ -77,6 +107,7 @@ export default class AddEntry extends Component {
 						</View>
 					)
 				})}
+				<SubmitBtn onPress={this.submit}/>
 			</View>
 		);
 	}
